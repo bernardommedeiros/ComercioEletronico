@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "nome": "Admin",
+        "email": "admin",
+        "senha": "admin",
+        "perfil": "admin"
+    }
+]

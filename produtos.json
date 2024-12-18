@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "nome": "Camisa",
+        "preco": 50.0,
+        "categoria": {
+            "id": 1,
+            "nome": "Roupas"
+        }
+    },
+    {
+        "id": 2,
+        "nome": "T\u00eanis",
+        "preco": 150.0,
+        "categoria": {
+            "id": 1,
+            "nome": "Roupas"
+        }
+    }
+]
