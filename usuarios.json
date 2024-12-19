@@ -5,5 +5,12 @@
         "email": "admin",
         "senha": "admin",
         "perfil": "admin"
+    },
+    {
+        "id": 2,
+        "nome": "bd",
+        "email": "bd",
+        "senha": "bd",
+        "perfil": "cliente"
     }
 ]

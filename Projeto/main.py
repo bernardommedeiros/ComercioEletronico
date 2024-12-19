@@ -1,6 +1,6 @@
 # main.py
 
-from models import Usuario, Produto, Pedido, Categoria
+from models import Usuario, Produto, Pedido, Categoria, ItemCarrinho
 from salvar import salvar_dados, carregar_dados, autenticar
 from views.clientes import gerenciar_clientes
 from views.categorias import gerenciar_categorias
@@ -60,15 +60,17 @@ def cliente_dashboard(usuario):
             produto_id = int(input("ID do produto: "))
             produto = next((p for p in produtos if p.id == produto_id), None)
             if produto:
-                carrinho.append(produto)
-                print(f"{produto.nome} foi adicionado ao seu carrinho.")
+                quantidade = int(input("Quantidade: "))
+                item_carrinho = ItemCarrinho(produto, quantidade)
+                carrinho.append(item_carrinho)
+                print(f"{quantidade}x {produto.nome} foi adicionado ao seu carrinho.")
             else:
                 print("Produto não encontrado.")
         elif escolha_cliente == "3":
             for item in carrinho:
                 print(item)
         elif escolha_cliente == "4":
-            total = sum(item.preco for item in carrinho)
+            total = sum(item.produto.preco * item.quantidade for item in carrinho)
             pedidos.append(Pedido(usuario, carrinho, total))
             salvar_dados('pedidos.json', pedidos)
             carrinho.clear()
@@ -97,14 +99,21 @@ def main():
     # Adiciona produtos padrão se não existirem
     if not produtos:
         categoria_roupas = Categoria(1, "Roupas")
-        produtos = [Produto(1, "Camisa", 50.0, categoria_roupas), Produto(2, "Tênis", 150.0, categoria_roupas)]
+        produtos = [
+            Produto(1, "Camisa", 50.0, categoria_roupas),
+            Produto(2, "Tênis", 150.0, categoria_roupas),
+            Produto(3, "Short", 30.0, categoria_roupas),
+            Produto(4, "Meia", 10.0, categoria_roupas),
+            Produto(5, "Boné", 25.0, categoria_roupas)
+        ]
         salvar_dados('produtos.json', produtos)
         categorias.append(categoria_roupas)
         salvar_dados('categorias.json', categorias)
 
-    print("Bem-vindo ao Comércio Eletrônico")
+    print("Bem-vindo ao Sistema de Comércio Eletrônico!")
 
     while True:
+        print("\nMenu:")
         print("1 - Criar Conta")
         print("2 - Entrar")
         print("3 - Sair")

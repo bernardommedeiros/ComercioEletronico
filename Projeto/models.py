@@ -1,3 +1,5 @@
+# models.py
+
 class Usuario:
     def __init__(self, id, nome, email, senha, perfil):
         self.id = id
@@ -51,6 +53,24 @@ class Produto:
     def __str__(self):
         return f"{self.id}. {self.nome} - R${self.preco} - {self.categoria.nome}"
 
+class ItemCarrinho:
+    def __init__(self, produto, quantidade):
+        self.produto = produto
+        self.quantidade = quantidade
+
+    def to_dict(self):
+        data = self.__dict__.copy()
+        data['produto'] = self.produto.to_dict()
+        return data
+
+    @classmethod
+    def from_dict(cls, data):
+        data['produto'] = Produto.from_dict(data['produto'])
+        return cls(**data)
+
+    def __str__(self):
+        return f"{self.quantidade}x {self.produto.nome} - R${self.produto.preco} cada"
+
 class Pedido:
     def __init__(self, usuario, itens, total):
         self.usuario = usuario
@@ -66,7 +86,7 @@ class Pedido:
     @classmethod
     def from_dict(cls, data):
         data['usuario'] = Usuario.from_dict(data['usuario'])
-        data['itens'] = [Produto.from_dict(item) for item in data['itens']]
+        data['itens'] = [ItemCarrinho.from_dict(item) for item in data['itens']]
         return cls(**data)
 
     def __str__(self):

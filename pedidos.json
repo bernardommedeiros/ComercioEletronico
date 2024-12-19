@@ -1,0 +1,26 @@
+[
+    {
+        "usuario": {
+            "id": 2,
+            "nome": "bd",
+            "email": "bd",
+            "senha": "bd",
+            "perfil": "cliente"
+        },
+        "itens": [
+            {
+                "produto": {
+                    "id": 1,
+                    "nome": "Camisa",
+                    "preco": 50.0,
+                    "categoria": {
+                        "id": 1,
+                        "nome": "Roupas"
+                    }
+                },
+                "quantidade": 3
+            }
+        ],
+        "total": 150.0
+    }
+]
