@@ -1,6 +1,8 @@
-# main.py
-
-from models import Usuario, Produto, Pedido, Categoria, ItemCarrinho
+from models.usuario import Usuario
+from models.produto import Produto
+from models.pedido import Pedido
+from models.categoria import Categoria
+from models.itemCarrinho import ItemCarrinho
 from salvar import salvar_dados, carregar_dados, autenticar
 from views.clientes import gerenciar_clientes
 from views.categorias import gerenciar_categorias
